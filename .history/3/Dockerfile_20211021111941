@@ -2,7 +2,7 @@
 FROM debian
 
 # RUN -> Comando que será executado durante a criação do container, cada comando run cria uma nova camada na imagem
-RUN apt-get update && apt-get install -y apache2 curl && apt-get clean
+RUN apt-get update && apt-get install -y apache2 && apt-get clean
 
 # ENV -> Environment, variáveis de ambiente
 ENV APACHE_LOCK_DIR="/var/lock"

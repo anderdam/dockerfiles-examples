@@ -1,0 +1,14 @@
+FROM golang:1.17 as build
+RUN apk add --update git
+RUN go mod download
+
+ENV CGO_ENABLED=0
+ARG GOPROXY
+
+WORKDIR /src
+ADD go.mod go.sum ./
+
+
+ADD . ./
+RUN go test ./...
+RUN go install . ./cmd/...

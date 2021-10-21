@@ -2,7 +2,7 @@
 FROM debian
 
 # RUN -> Comando que será executado durante a criação do container, cada comando run cria uma nova camada na imagem
-RUN apt-get update && apt-get install -y apache2 curl && apt-get clean
+RUN apt-get update && apt-get install -y apache2 && apt-get clean
 
 # ENV -> Environment, variáveis de ambiente
 ENV APACHE_LOCK_DIR="/var/lock"
@@ -17,7 +17,7 @@ ENV APACHE_LOG_DIR="/var/log/apache2"
 # ADD -> semelhante ao copy, porém mais completo, como por exemplo adicionando um arquivo tar já descompactado.
 ADD index.html /var/www/html
 
-HEALTHCHECK --interval=30s --timeout=3s \
+HEALTHCHECK --interval=5m --timeout=3s \
   CMD curl -f http://localhost/ || exit 1
 
 #LABEL -> comentários e descrições
